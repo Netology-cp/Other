@@ -4,6 +4,7 @@ public class Main {
 
     public static String[] products = { "Хлеб", "Пачка гречки", "Упаковка яиц", "Мороженка" };
     public static int[] prices = { 50, 135, 65, 53 };
+    public static int MIN_COST_FOR_BONUS = 1000;
 
     // В стоимости этих товаров каждые три товара должны стоить как два:
     public static String[] productsOnSale = { "Хлеб", "Мороженка" };
@@ -27,15 +28,18 @@ public class Main {
             if ("end".equals(line)) {
                 break;
             }
-
             String[] parts = line.split(" ");
             int productNum = Integer.parseInt(parts[0]) - 1;
             int productCount = Integer.parseInt(parts[1]);
 
             counts[productNum] += productCount;
         }
-
         System.out.println("Ваша корзина покупок:");
+        int sumToCheck = 0;
+        for (int i = 0; i < products.length; i++) {
+            sumToCheck += prices[i] * counts[i];
+        }
+        boolean doBonus = sumToCheck >= MIN_COST_FOR_BONUS;
         int sum = 0;
         for (int i = 0; i < products.length; i++) {
             if (counts[i] != 0) {
@@ -45,12 +49,11 @@ public class Main {
                         isOnSale = true;
                     }
                 }
-
                 if (isOnSale) {
-                    System.out.println("\t" + products[i] + " " + counts[i] + " шт. за " + (prices[i] * (counts[i] / 3 * 2 + counts[i] % 3)) + " руб. (распродажа!)");
+                    System.out.println("\t" + products[i] + " " + (doBonus ? counts[i] + 1 : counts[i]) + " шт. за " + (prices[i] * ((doBonus ? counts[i] + 1 : counts[i]) / 3 * 2 + (doBonus ? counts[i] + 1 : counts[i]) % 3)) + " руб. (распродажа!)");
                     sum += prices[i] * (counts[i] / 3 * 2 + counts[i] % 3);
                 } else {
-                    System.out.println("\t" + products[i] + " " + counts[i] + " шт. за " + (prices[i] * counts[i]) + " руб.");
+                    System.out.println("\t" + products[i] + " " + (doBonus ? counts[i] + 1 : counts[i]) + " шт. за " + (prices[i] * counts[i]) + " руб.");
                     sum += prices[i] * counts[i];
                 }
             }
