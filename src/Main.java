@@ -7,7 +7,7 @@ public class Main {
     public static int MIN_COST_FOR_BONUS = 1000;
 
     public static void main(String[] args) {
-        System.out.println("Добро пожаловать в магазин!");
+        System.out.println("Добро пожаловать в магазин!"  );
         System.out.println("Наш ассортимент:");
         for (int i = 0; i < products.length; i++) {
             System.out.println("\t" + (i + 1) + ". " + products[i] + " за " + prices[i] + " за шт. ");
