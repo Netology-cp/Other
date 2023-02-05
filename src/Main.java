@@ -79,6 +79,7 @@ public class Main {
             if (isOnSale) {
                 System.out.println("\t" + products[i] + " " + counts[i] + " шт. за " + (prices[i] * (counts[i] / 3 * 2 + counts[i] % 3)) + " руб. (распродажа!)");
                 sum += prices[i] * (counts[i] / 3 * 2 + counts[i] % 3);
+                isOnSale=false;
             } else {
                 System.out.println("\t" + products[i] + " " + counts[i] + " шт. за " + (prices[i] * counts[i]) + " руб.");
                 sum += prices[i] * counts[i];
