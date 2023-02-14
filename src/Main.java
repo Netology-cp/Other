@@ -44,9 +44,13 @@ public class Main {
         boolean doBonus = sum >= MIN_COST_FOR_BONUS;
         for (int i = 0; i < products.length; i++) {
             if (counts[i] != 0) {
-<<<<<<< HEAD
                 System.out.println("\t" + products[i] + " " + (doBonus ? counts[i] + 1 : counts[i]) + " шт. за " + (prices[i] * counts[i]) + " руб.");
-=======
+            }
+        }
+        System.out.println("Итого: " + sum + " руб.");
+        sum = 0;
+        for (int i = 0; i < products.length; i++) {
+            if (counts[i] != 0) {
                 boolean isOnSale = false;
                 for (String saleProduct : productsOnSale) {
                     if (products[i].equals(saleProduct)) {
@@ -61,7 +65,6 @@ public class Main {
                     System.out.println("\t" + products[i] + " " + counts[i] + " шт. за " + (prices[i] * counts[i]) + " руб.");
                     sum += prices[i] * counts[i];
                 }
->>>>>>> 204ad481f65bafdaaa6f83cecfcc2a4d41aa66d3
             }
         }
         System.out.println("Итого: " + sum + " руб.");
